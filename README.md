@@ -16,5 +16,3 @@ The scripts contained in 'Contam_export_scripts_AJE' provide the functions which
 The scripts contained within the folder 'Function_scripts_AJE' contains functions which are used within the the two main scripts; 'FixedInf_9Zone_Conc_AJE.py' and 'InfHCW_12zone_Conc_AJE.py'. 'Function_scripts_AJE/Contam_flows_12zone_AJE.py' defines the ventialtion matrix set-up using inter-zonal flow values which have been exported from airflow simulations in CONTAM. 'Function_scripts_AJE/output_AJE.py' is predefined to produce particular outputs used in Case Study 2. 'Function_scripts_AJE/Vent_Set_A_AJE.py' is a script which defines the set-up of Ventilation Setting A (Originally described Noakes et. al. [2009]). 'Function_scripts_AJE/SE_Conc_Eqn_AJE.py' defines the governing equations for the transmission model.
 
 The scripts contained within the folders 'Contam_export_scripts_AJE' and 'Function_scripts_AJE' must be callable file paths when running 'FixedInf_9Zone_Conc_AJE.py' and 'InfHCW_12zone_Conc_AJE.py', to reproduce the research in Case Study 1 and Case Study 2, respectively.
-
-test to track changes

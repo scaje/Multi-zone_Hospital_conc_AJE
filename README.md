@@ -1,4 +1,4 @@
-# Multi-zone_Hospital_conc_AJE
+# Multi-zone Hospital Ward Concentration Code - AJE
 This repository reproduces the research contained in the manuscript "A Mathematical Model for Assessing Transient Airborne Infection Risk in Hospital Ward"; Alexander J. Edwards, Lee Benson, Zeyu Guo, Martin Lopez-Garcia, Catherine J. Noakes, Daniel Peckham, Marco-Felipe King.
 
 # Software

@@ -32,6 +32,8 @@ from Vent_Set_A_AJE import VentilationMatrix #import function which defines vent
 from Vent_Set_A_AJE import InvVentilationMatrix #imports function which defines inverse ventilation matrix
 from SE_Conc_Eqn_AJE import odes #imports predefined SE ode functions for transient concentration
 from SE_Conc_Eqn_AJE import steadyodes ##imports predefined SE ode functions for steady concentration
+from output_AJE import output_SE_Ct #This imports the plotting ode for all possible outputs for multizonal transient concentreation SE model
+
 """ To run the code, one needs to define the initial parameters below and then 
 define the setup matrices for each specific zone. A time period and timestep needs to be defined
 and then the transient concentrations can be solved and the graphs can be produced. 
@@ -187,7 +189,13 @@ print("V_zonal = " + str(V_zonal)) #print bounday flow to check its updating eac
 V_zonal_inv = InvVentilationMatrix(V_zonal)
 print( "V_zonal_inv = " + str(V_zonal_inv))
 
+#defining the steady state value of concentration
 Cstar = np.matmul(V_zonal_inv, I_zonal) * q_zonal
+
+#extending the steady state value of concentration to be the same length as the time vector for plotting
+Cstar_t = np.tile(Cstar, (len(t), 1))
+
+
 
 
 E0star = np.zeros(n)
@@ -248,87 +256,6 @@ t_hours = t/60
 
 
 
-######################### Concentration #########################################
-############################################################################
-###### Plotting transient solution to concentration 
-for i in range(n):
-    plt.plot(t_hours,Ct[:,i], label='Zone %s' %(i+1))
-plt.title("Concentration of Pathogen C(t)")
-plt.xlabel("Time [hr]")
-plt.ylabel("Concentration [$qm^{-3}$]")
-#plt.legend(title='Concentration')
-plt.legend(loc='center left',prop={'size': 8}, bbox_to_anchor=(1, 0.5), title='Concentration')
-plt.show()
-
-
-############################################################################
-###### Plotting transient concentration with steady state
-#plt.figure(dpi=1000)#set dots per inch for better quality images
-
-colour = iter(cm.tab20(np.linspace(0, 1, n))) #defining colour map for new loop
-for i in range(n):
-    c = next(colour)#choosing next random colour for plotting
-    plt.plot(t_hours, Ct[:,i],color=c, label = 'Zone %s' %(i+1))
-    plt.hlines(Cstar[i],0,t_hours[-1],color=c, linestyle='dashed' , label = 'Zone %s - Steady State' %(i+1) )#, label = 'Zone %s - Steady State' %(i+1) 
-plt.title("Concentration of Pathogen C(t)")
-plt.xlabel("Time [hr]")
-plt.ylabel("Concentration [$qm^{-3}$]")
-plt.legend(loc='center left',prop={'size': 8}, bbox_to_anchor=(1, 0.5), title='Concentration')
-plt.show()
-
-
-
-
-
-
-
-
-###########################################################################
-######################### population plotting #############################
-###########################################################################
-#normal population
-plt.plot(t_hours,St_pop, label='Susceptible')
-plt.plot(t_hours,Et_pop, label = 'Exposed')
-plt.title("Epidemic model of total population")
-plt.xlabel("Time/Hours")
-plt.ylabel("Number of people")
-plt.legend()
-plt.show()
-
-#full epidemic model plot suscepible vs exposed
-plt.plot(t_hours,St_pop,'tab:blue', label='Susceptible')
-plt.plot(t_hours, Ststar_pop, 'tab:blue', linestyle='dashed' , label='Susceptible - Steady C*')
-plt.plot(t_hours,Et_pop, 'tab:red', label = 'Exposed')
-plt.plot(t_hours, Etstar_pop, 'tab:red', linestyle='dashed' , label='Exposed - Steady C*')
-plt.title("Epidemic model of total population (steady vs transient)")
-plt.xlabel("Time/Hours")
-plt.ylabel("Number of people")
-plt.legend()
-plt.show()
-
-#full population susceptible plot
-plt.plot(t_hours,St_pop,'tab:blue', label='Susceptible')
-plt.plot(t_hours, Ststar_pop, 'tab:blue', linestyle='dashed' , label='Susceptible - Steady C*')
-plt.title("Susceptible model of total population (steady vs transient)")
-plt.xlabel("Time/Hours")
-plt.ylabel("Number of people")
-plt.legend(loc='center left',prop={'size': 8}, bbox_to_anchor=(1, 0.5), title='Suscpetible')
-#plt.legend()
-plt.show()
-
-#full population exposed plot
-#plt.figure(dpi=1000)#set dots per inch for better quality images
-
-plt.plot(t_hours,Et_pop,'tab:red', label = 'Transient C(t)')
-plt.plot(t_hours, Etstar_pop, 'tab:red', linestyle='dashed' , label='Steady-state C*')
-#plt.title("Exposed model of total population")
-plt.gca().yaxis.set_major_formatter(StrMethodFormatter('{x:,.2f}')) # to set the decimal places used in yaxis
-plt.xlabel("Time [hr]")
-plt.ylabel("Number of Exposed E(t)")
-plt.legend(fontsize=15)#loc='center left',prop={'size': 8}, bbox_to_anchor=(1, 0.5), title='Exposed')
-#plt.legend()
-plt.show()
-
-
-print("--- Run Time = %s seconds ---" % (time.time() - start_time))
+#uses a predefined function to plot all of the required outputs for this model
+output_SE_Ct(n, t_hours, Ct, Cstar_t, St, Et, Ststar, Etstar, St_pop, Et_pop, Ststar_pop, Etstar_pop, I0_pop, start_time)
 

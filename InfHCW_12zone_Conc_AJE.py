@@ -388,5 +388,5 @@ output_SE_Ct(5, t_hours, Ct, Cstar, St, Et, Ststar, Etstar, St_pop, Et_pop, Stst
 
 
 
-boundary_flow_test = boundary_flow_contam( r"C:\Users\scaje\OneDrive - University of Leeds\UNIV. OF LEEDS\PhD PROJECT\Ward Transmission\St_James_ward_info\CONTAM_Model_Zeyu\Contam_data\Windows_closed.csv", n, t[3], VentMatrix.geometry)
-print("boundary flow test" + str(boundary_flow_test))
+#boundary_flow_test = boundary_flow_contam( r"C:\Users\scaje\OneDrive - University of Leeds\UNIV. OF LEEDS\PhD PROJECT\Ward Transmission\St_James_ward_info\CONTAM_Model_Zeyu\Contam_data\Windows_closed.csv", n, t[3], VentMatrix.geometry)
+#print("boundary flow test" + str(boundary_flow_test))

@@ -51,7 +51,7 @@ def boundary_flow_contam(filepath,n,t,geometry):
         for j in range(n):
             if geometry[i,j] > 0:
                 if boundary_flow[i,j] < 0:
-                    boundary_flow[j,i] = boundary_flow[i,j]
+                    boundary_flow[j,i] = - boundary_flow[i,j]
                     boundary_flow[i,j] = 0
                 
 

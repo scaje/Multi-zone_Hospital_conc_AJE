@@ -4,7 +4,7 @@ Created on Mon May  9 15:58:09 2022
 
 @author: scaje
 """
-from read_csv import ReadCSV
+from read_csv_AJE import ReadCSV
 import numpy as np
 
 

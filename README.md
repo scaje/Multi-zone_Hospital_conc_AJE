@@ -1,5 +1,5 @@
 # Multi-zone Hospital Ward Concentration Code - AJE
-This repository contains the code and data to reproduce the research contained in the manuscript "A Mathematical Model for Assessing Transient Airborne Infection Risk in Hospital Ward"; Alexander J. Edwards, Lee Benson, Zeyu Guo, Martin Lopez-Garcia, Catherine J. Noakes, Daniel Peckham, Marco-Felipe King.
+This repository contains the code and data to reproduce the research contained in the manuscript "A Mathematical Model for Assessing Transient Airborne Infection Risks in a Multi-zone Hospital Ward."; Alexander J. Edwards, Lee Benson, Zeyu Guo, Martin Lopez-Garcia, Catherine J. Noakes, Daniel Peckham, Marco-Felipe King.
 
 # Software
 This code is written using Python in Spyder 4.1.4. Users will also require CONTAM 3.4.0.3 to reproduce the airflow simulations.
